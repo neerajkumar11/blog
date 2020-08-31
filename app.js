@@ -39,12 +39,9 @@ app.get("/posts/:postName", function(req, res){
     let storedTitle = lodash.lowerCase(blog.newTitle);
     if(storedTitle === requestedTitle){
       res.render("post", {title: blog.newTitle, post: blog.newBody});
-    }
+    };
   });
-  // res.redirect("/");
 });
-
-
 
 app.post("/compose", function(req, res){
   let content = {
@@ -55,14 +52,10 @@ app.post("/compose", function(req, res){
   res.redirect("/");
 });
 
-
-
-
-
-
-
-
-
+app.post("/search", function(req, res){
+  let searchTitle = req.body.search;
+  res.redirect("posts/:"+searchTitle);
+});
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
